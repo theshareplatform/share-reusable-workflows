@@ -13,15 +13,16 @@ on:
         type: string  # Explicitly setting the type, optional
 
 jobs:
-  triage:
-    runs-on: ubuntu-latest
+  build:
+    runs-on:
+      ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
-          java-version: {{ inputs.java-version }}
-          distribution: {{ inputs.temurin }}
+          java-version: ${{ inputs.java-version }}
+          distribution: ${{ inputs.distribution }}
 
       - name: Build with Gradle
         uses: gradle/gradle-build-action@v2
