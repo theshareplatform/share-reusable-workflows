@@ -1,3 +1,4 @@
+name: Build
 on:
   workflow_call:
     inputs:
@@ -22,7 +23,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: ${{ inputs.java-version }}
-          java-distribution: ${{ inputs.java-distribution }}
+          distribution: ${{ inputs.java-distribution }}
 
       - name: Build with Gradle
         uses: gradle/gradle-build-action@v2
