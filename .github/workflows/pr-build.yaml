@@ -6,7 +6,7 @@ on:
         required: true
         default: '17'
         type: string
-      distribution:
+      java-distribution:
         description: 'Select JDK Distribution'  # Added a description for clarity, optional
         required: true
         default: 'temurin'
@@ -22,7 +22,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: ${{ inputs.java-version }}
-          distribution: ${{ inputs.distribution }}
+          java-distribution: ${{ inputs.java-distribution }}
 
       - name: Build with Gradle
         uses: gradle/gradle-build-action@v2
