@@ -1,0 +1,37 @@
+on:
+  workflow_call:
+    inputs:
+      java-version:
+        description: 'Select Java version'
+        required: true
+        default: '17'
+        type: string
+      distribution:
+        description: 'Select JDK Distribution'  # Added a description for clarity, optional
+        required: true
+        default: 'temurin'
+        type: string  # Explicitly setting the type, optional
+
+jobs:
+  triage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: {{ inputs.java-version }}
+          distribution: {{ inputs.temurin }}
+
+      - name: Build with Gradle
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: build
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: Package
+          path: build/libs
+
+
