@@ -42,6 +42,10 @@ jobs:
           name: Package
           path: build/libs
 
+      - name: List contents of the Jacoco report directory
+        run: ls -l user-auth-ms/build/reports/jacoco/test/
+
+
       - name: Upload coverage Report
         uses: 'actions/upload-artifact@v2'
         with:
